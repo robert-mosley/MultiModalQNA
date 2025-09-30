@@ -44,16 +44,13 @@ pip install -r requirements.txt
 Make sure you have a LoRA adapter checkpoint saved locally.
 Update the adapter_path in the script to point to your checkpoint:
 
-python
-Copy code
-adapter_path = "../checkpoint-11066"
 ▶️ Usage
 1. Folder Captioning + Search
 Generate captions for all images in a folder and search for a keyword:
 
 bash
 Copy code
-python main.py 1 <keyword>
+python MultiModelQNA.py 1 <keyword>
 Select a folder when prompted.
 
 Captions for each image are generated automatically.
@@ -65,9 +62,10 @@ Ask a question about a single image:
 
 bash
 Copy code
-python main.py 2 "<your question>"
+python MultiModelQNA.py 2 "<your question>"
 Select an image file when prompted.
 
 The program will generate a caption and attempt to answer your question.
 
 If no clear answer is found, the caption is printed instead.
+
