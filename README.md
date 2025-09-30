@@ -71,13 +71,3 @@ Select an image file when prompted.
 The program will generate a caption and attempt to answer your question.
 
 If no clear answer is found, the caption is printed instead.
-
-📂 Project Structure
-pgsql
-Copy code
-multimodal-vqa/
-│── main.py               # Core script (captioning + Q&A)
-│── requirements.txt      # Dependencies
-│── README.md             # Project documentation
-│── checkpoint-11066/     # LoRA adapter files (not included in repo)
-│── clip-from-scratch/    # Custom CLIP implementation (research exploration)
