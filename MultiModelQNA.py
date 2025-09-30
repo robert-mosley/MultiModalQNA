@@ -10,17 +10,11 @@ import matplotlib.pyplot as plt
 import os
 import sys
 
-adapter_path = "../checkpoint-11066"
-
-if not os.path.exists(os.path.join(adapter_path, "adapter_config.json")):
-    raise FileNotFoundError(f"LoRA adapter not found at: {adapter_path}")
-
 model = AutoModelForQuestionAnswering.from_pretrained("distilbert-base-uncased")
 model2 = BlipForConditionalGeneration.from_pretrained("Salesforce/blip-image-captioning-base")
 processor = BlipProcessor.from_pretrained("Salesforce/blip-image-captioning-base")
 tokenizer = AutoTokenizer.from_pretrained("distilbert-base-uncased")
-adapterModel = PeftModel.from_pretrained(model, adapter_path, adapter_file_name="adapter_model.safetensors")
-adapterModel.eval()
+
 
 option = sys.argv[1]
 if option == "1":
@@ -65,7 +59,7 @@ if option == "2":
 
     inputs = tokenizer(question, caption, truncation=True, return_tensors="pt")
     with torch.no_grad():
-        outputs = adapterModel(**inputs)
+        outputs = model(**inputs)
 
     start_idx = torch.argmax(outputs.start_logits)
     end_idx = torch.argmax(outputs.end_logits) + 1
@@ -76,4 +70,5 @@ if option == "2":
     if answer == "":
         print(caption)
     else:
+
         print("Answer:", answer)
